@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://fastezyuae.com/sitemap.xml
