@@ -20,5 +20,6 @@ All listed image assets are existing project files and are reused without replac
 | `images/contact-banner.webp` | Contact banner | Happy family on holiday |
 | `images/services-hero.webp` | Services hero | Travel essentials laid out for a trip |
 | `images/corporate-hero.webp` | Home corporate card and Corporate hero | Business travelers at an airport |
+| `images/setup-cowork.webp` | Business Setup workspace band | Modern coworking space |
 
 Open items: favicon files, Open Graph image, and any future client-supplied replacements or license confirmations for stock-style photography.

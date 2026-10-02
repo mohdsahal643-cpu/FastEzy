@@ -98,7 +98,7 @@ const FORM_ENDPOINT = "";
 
   function whatsappUrl(service) {
     const text = "Hello FastEzy, I would like to know more about " + service + ".";
-    return "https://wa.me/971545465434?text=" + encodeURIComponent(text);
+    return "https://wa.me/971585795434?text=" + encodeURIComponent(text);
   }
   document.querySelectorAll("[data-whatsapp-service]").forEach(function (link) { link.setAttribute("href", whatsappUrl(link.getAttribute("data-whatsapp-service"))); });
 
@@ -108,20 +108,32 @@ const FORM_ENDPOINT = "";
     const submit = form.querySelector("button[type='submit']");
     const name = form.querySelector("[name='name']");
     const phone = form.querySelector("[name='phone']");
+    const phoneNumber = form.querySelector("[name='phone-number']");
+    const countryCode = form.querySelector("[name='country-code']");
     const email = form.querySelector("[name='email']");
+    const business = form.querySelector("[name='business']");
+    const timeline = form.querySelector("[name='timeline']");
+    if (phoneNumber) {
+      phoneNumber.addEventListener("input", function () { phoneNumber.value = phoneNumber.value.replace(/[^\d ]/g, ""); });
+    }
     function setStatus(message, type) { status.innerHTML = message; status.className = "form-status is-" + type; }
     form.addEventListener("submit", function (event) {
       event.preventDefault();
       setStatus("", "idle");
       if (!name.value.trim()) { setStatus("Please enter your name.", "error"); name.focus(); return; }
-      if (!/^[+()\-\s\d]{7,}$/.test(phone.value.trim())) { setStatus("Please enter a valid phone number.", "error"); phone.focus(); return; }
+      const enteredPhone = phoneNumber ? phoneNumber.value.trim() : phone.value.trim();
+      const phoneIsValid = phoneNumber ? /^\d[\d ]{6,}$/.test(enteredPhone) : /^[+()\-\s\d]{7,}$/.test(enteredPhone);
+      if (!phoneIsValid) { setStatus("Please enter a valid phone number.", "error"); (phoneNumber || phone).focus(); return; }
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value.trim())) { setStatus("Please enter a valid email address.", "error"); email.focus(); return; }
+      if (business && !business.value.trim()) { setStatus("This field is required.", "error"); business.focus(); return; }
+      if (timeline && !timeline.value) { setStatus("This field is required.", "error"); timeline.focus(); return; }
+      if (phoneNumber) phone.value = countryCode.value + phoneNumber.value.replace(/\s/g, "");
       if (form.querySelector("[name='website']").value) return;
       submit.disabled = true;
       submit.textContent = "Sending...";
       if (!FORM_ENDPOINT) {
         window.setTimeout(function () {
-          setStatus("Something went wrong. Please try again or <a href=\"https://wa.me/971545465434\" target=\"_blank\" rel=\"noopener\">chat with us on WhatsApp</a>.", "error");
+          setStatus("Something went wrong. Please try again or <a href=\"https://wa.me/971585795434\" target=\"_blank\" rel=\"noopener\">chat with us on WhatsApp</a>.", "error");
           submit.disabled = false;
           submit.textContent = "Send";
         }, 450);
@@ -133,7 +145,7 @@ const FORM_ENDPOINT = "";
           setStatus("Thank you. Our team will contact you shortly.", "success");
           form.reset();
         })
-        .catch(function () { setStatus("Something went wrong. Please try again or <a href=\"https://wa.me/971545465434\" target=\"_blank\" rel=\"noopener\">chat with us on WhatsApp</a>.", "error"); })
+        .catch(function () { setStatus("Something went wrong. Please try again or <a href=\"https://wa.me/971585795434\" target=\"_blank\" rel=\"noopener\">chat with us on WhatsApp</a>.", "error"); })
         .finally(function () { submit.disabled = false; submit.textContent = "Send"; });
     });
   }
