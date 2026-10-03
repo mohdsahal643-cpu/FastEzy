@@ -21,5 +21,19 @@ All listed image assets are existing project files and are reused without replac
 | `images/services-hero.webp` | Services hero | Travel essentials laid out for a trip |
 | `images/corporate-hero.webp` | Home corporate card and Corporate hero | Business travelers at an airport |
 | `images/setup-cowork.webp` | Business Setup workspace band | Modern coworking space |
+| `images/package-tiles/Georgia.webp` | Services Holiday Packages tile: Georgia | 1122x1402, Georgia 4N/5D |
+| `images/package-tiles/Golden Hour.webp` | Services Holiday Packages tile: Armenia | 1122x1402, Armenia 4N/5D |
+| `images/package-tiles/Azerbaijan.webp` | Services Holiday Packages tile: Azerbaijan | 1122x1402, Azerbaijan 3N/4D |
+| `images/package-tiles/Almaty.webp` | Services Holiday Packages tile: Almaty | 1122x1402, Almaty 3N/4D |
+| `images/package-tiles/Salalah.webp` | Services Holiday Packages tile: Salalah | 1122x1402, Salalah 4N/5D |
+| `images/package-tiles/Egyptian.webp` | Services Holiday Packages tile: Egypt | 1122x1402, Egypt 4N/5D |
+| `images/package-tiles/Jordan.webp` | Services Holiday Packages tile: Jordan | 1122x1402, Jordan 4N/5D |
+| `images/package-tiles/Thailand.webp` | Services Holiday Packages tile: Thailand | 1122x1402, Thailand 4N/5D |
+| `images/icons/plane.webp` | Holiday Packages includes strip: Flights | Package include icon |
+| `images/icons/bus.webp` | Holiday Packages includes strip: Transfers | Package include icon |
+| `images/icons/sleeping.webp` | Holiday Packages includes strip: Accommodation | Package include icon |
+| `images/icons/cup-of-drink.webp` | Holiday Packages includes strip: Daily Breakfast | Package include icon |
+| `images/icons/map.webp` | Holiday Packages includes strip: Tours & Guide | Package include icon |
+| `images/icons/travel-insurance.webp` | Holiday Packages includes strip: Travel Insurance | Package include icon |
 
 Open items: favicon files, Open Graph image, and any future client-supplied replacements or license confirmations for stock-style photography.

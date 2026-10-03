@@ -1,4 +1,5 @@
-const FORM_ENDPOINT = "";
+const FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbzmqWFahalpMik16rK_S7bajXpmCnfzrrAA_Pim_LgdbHOnmW7U4FUR68Egfgk/exec";
+const BUSINESS_FORM_ENDPOINT = "https://script.google.com/macros/s/AKfycbxKj0pAQlqQKuaiqEYqF2wF7IdgML8XKOyvtrA9Uo7kK6GDXxQK0z9Lc0NORvyJ9xfI/exec";
 
 (function () {
   "use strict";
@@ -104,6 +105,7 @@ const FORM_ENDPOINT = "";
 
   const form = document.querySelector("[data-contact-form]");
   if (form) {
+    const formEndpoint = document.body.dataset.page === "contact" ? FORM_ENDPOINT : BUSINESS_FORM_ENDPOINT;
     const status = form.querySelector("[data-form-status]");
     const submit = form.querySelector("button[type='submit']");
     const name = form.querySelector("[name='name']");
@@ -130,23 +132,22 @@ const FORM_ENDPOINT = "";
       if (phoneNumber) phone.value = countryCode.value + phoneNumber.value.replace(/\s/g, "");
       if (form.querySelector("[name='website']").value) return;
       submit.disabled = true;
-      submit.textContent = "Sending...";
-      if (!FORM_ENDPOINT) {
+      submit.innerHTML = '<span class="button-spinner" aria-hidden="true"></span>Sending...';
+      if (!formEndpoint) {
         window.setTimeout(function () {
           setStatus("Something went wrong. Please try again or <a href=\"https://wa.me/971585795434\" target=\"_blank\" rel=\"noopener\">chat with us on WhatsApp</a>.", "error");
           submit.disabled = false;
-          submit.textContent = "Send";
+          submit.innerHTML = 'Send <span aria-hidden="true">&rarr;</span>';
         }, 450);
         return;
       }
-      fetch(FORM_ENDPOINT, { method: "POST", body: new FormData(form), headers: { Accept: "application/json" } })
-        .then(function (response) {
-          if (!response.ok) throw new Error("Form submission failed");
+      fetch(formEndpoint, { method: "POST", body: new URLSearchParams(new FormData(form)), mode: "no-cors" })
+        .then(function () {
           setStatus("Thank you. Our team will contact you shortly.", "success");
           form.reset();
         })
         .catch(function () { setStatus("Something went wrong. Please try again or <a href=\"https://wa.me/971585795434\" target=\"_blank\" rel=\"noopener\">chat with us on WhatsApp</a>.", "error"); })
-        .finally(function () { submit.disabled = false; submit.textContent = "Send"; });
+        .finally(function () { submit.disabled = false; submit.innerHTML = 'Send <span aria-hidden="true">&rarr;</span>'; });
     });
   }
 }());
